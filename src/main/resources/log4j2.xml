@@ -4,6 +4,11 @@
 		<Property name="log-path">/tmp/</Property>
 	</Properties>
 	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+		</Console>
+
 		<RollingFile name="RollingFile" fileName="${log-path}/myexample.log"
 			filePattern="${log-path}/myexample-%d{yyyy-MM-dd}-%i.log">
 			<PatternLayout>
@@ -16,11 +21,14 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
-		<Logger name="root" level="debug" additivity="false">
+
+		<Logger name="world.we.deserve.HumanBeing" level="debug"
+			additivity="false">
 			<appender-ref ref="RollingFile" level="debug" />
 		</Logger>
-		<Root level="debug" additivity="false">
-			<AppenderRef ref="RollingFile" />
+
+		<Root level="ERROR" additivity="false">
+		<AppenderRef ref="console" />
 		</Root>
 	</Loggers>
 </Configuration>
